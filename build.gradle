@@ -1,0 +1,44 @@
+plugins {
+    id 'io.freefair.lombok' version '5.0.0'
+    id 'maven-publish'
+    id 'java-library'
+}
+group 'com.cs.cs'
+version '1.0-SNAPSHOT'
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
+}
+ext {
+    set('springCloudVersion', "Hoxton.SR1")
+}
+//compileJava.options.fork = true
+//compileJava.options.forkOptions.executable = '/usr/lib/jvm/java-8-openjdk-amd64'
+//dependencies {
+//    implementation "org.springframework.boot:spring-boot-starter-web"
+//}
+//dependencyManagement {
+//    imports {
+//        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+//    }
+//}
+
+//task sourcesJar(type: Jar) {
+//    from sourceSets.main.allSource
+//}
+//
+//artifacts {
+//    archives sourcesJar
+//}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+//            artifact bootJar
+            from components.java
+        }
+    }
+}
+test {
+    useJUnitPlatform()
+}
